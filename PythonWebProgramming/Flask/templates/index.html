@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}Index page{% endblock %}
+
+{% block header %}
+	{% if name %}
+		Welcome {{name}}!
+	{% else %}
+		Welcome user!
+	{% endif %}
+{% endblock %}
+
+{% block body %}
+	<a href="{{url_for('ncheck')}}"> Is it new year?</a>
+	{% if newyear %}
+		{{newyear}}
+		{% if time %}
+			The date is {{time}}
+		{% endif %}
+	{% endif %}
+	{% if notes %}
+		<ul>
+			{% for note in notes %}
+				{{note}}
+			{% endfor %}
+		</ul>
+	{% endif %}
+	<form action="{{url_for('notes')}}" method="post">
+		<input type="text" name="note">
+	</form>
+{% endblock %}
